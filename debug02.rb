@@ -1,15 +1,26 @@
 def average(numbers)
+  if numbers == nil
+    return nil
+  end
+  numbers.map! { |i| i.to_f }
   sum = 0
   numbers.each do |num|
     sum += num
   end
-  sum / numbers.size
+  if numbers.count == 0
+    return nil
+  end
+  sum / numbers.count
 end
 
 ## TEST HELPER METHOD
-def test_average(array)
-  print "avg of #{array.inspect}:"
-  result = average(array)
+def test_average(array=nil)
+  if array == nil
+    result = nil
+  else
+    print "avg of #{array.inspect}:"
+    result = average(array)
+  end
   p result
 end
 
@@ -18,15 +29,15 @@ test_average([4,5,6]) # => 5
 test_average([15,5,10]) # => 10
 
 # Should treat string like number
-test_average([15,'5',10]) # => 10
+test_average([15,"5",10]) # => 10
 
 # Should show decimal value
 test_average([10, 5]) # => 7.5 instead of just 7
 
 # Watch out! Even tests can have bugs!
-test_average(9, 5, 7)
+test_average([9, 5, 7])
 
-# Empty set should return nil, not throw an error
+#Empty set should return nil, not throw an error
 test_average([]) # => nil
 
 # Non-existent set should return nil

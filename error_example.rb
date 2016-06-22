@@ -10,4 +10,4 @@ def method3(a)
   puts a
 end
 
-method1
+method1("heyo")
